@@ -4,7 +4,7 @@
 
 ## 文档
 
-- [基础篇](./Based/readme.md)
+- [基础篇](https://github.com/Zenquan/react-learning/blob/master/Based/README.md)
 - [进阶篇](./Advanced/readme.md)
 - [实战篇](./Practice/readme.md)
 - [源码阅读](./Sourcecode/readme.md)
