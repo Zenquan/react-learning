@@ -1,5 +1,6 @@
 # react-learning
 
+[简体中文](./readme.md)|[英文](./readme-en.md)
 >这个仓库是用来放自己学react的过程代码，是为了督促自己一次又一次的更新迭代。
 
 ## 文档
