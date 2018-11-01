@@ -1,10 +1,9 @@
 # react-learning
 
+[Chinese](./readme.md)|[English](./readme-en.md)
 > This warehouse is used to let you learn the process code of react, in order to urge yourself to update iterations again and again.
 
 ## Document
-
-[Chinese](./readme.md)|[English](./readme-en.md)
 
 - [Basics](https://github.com/Zenquan/react-learning/blob/master/Based/README.md)
 - [Advanced](./Advanced/readme.md)
