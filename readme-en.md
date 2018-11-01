@@ -4,6 +4,8 @@
 
 ## Document
 
+[Chinese](./readme.md)|[English](./readme-en.md)
+
 - [Basics](https://github.com/Zenquan/react-learning/blob/master/Based/README.md)
 - [Advanced](./Advanced/readme.md)
 - [Practical](./Practice/readme.md)
@@ -15,5 +17,5 @@
 - [ ] Advanced: Writing component UI library
 - [ ] Practical articles: Implementing a project
 - [ ] Source reading: read the source code
-  - littleReact
-  - zen-router
+ - littleReact
+ - zen-router
