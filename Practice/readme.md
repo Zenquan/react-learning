@@ -1,5 +1,8 @@
 # Practice
 
+## 实战总结
+[react实战基础](./react.md)
+
 ## 遇到的一些坑
 
 1. li里要带key值否则会警告，这个问题在vue中也存在。
@@ -76,3 +79,5 @@ this.setState({
 })
 }
 ```
+
+3.angerouslySetInnerHTML: 为了防xss攻击
