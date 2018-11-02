@@ -25,17 +25,20 @@
 ```
 
 3.Uncaught Error: Can only set one of `children` or `props.dangerouslySetInnerHTML`
-1.浏览器报错内容：Can only set one of `children` or `props.dangerouslySetInnerHTML‘
-![](./images/dangerouslySetInnerHTML01.png)
-![](./images/dangerouslySetInnerHTML02.png)
 
-2.解决方法
-![](./images/dangerouslySetInnerHTML03.png)
+![dangerouslySetInnerHTML01](./images/dangerouslySetInnerHTML01.png)
 
-2.1使用dangerouslySetInnerHTML属性的虚拟dom元素之间可能有内容，应该没有任何内容
+![dangerouslySetInnerHTML02](./images/dangerouslySetInnerHTML02.png)
 
-2.2改正
-![](./images/dangerouslySetInnerHTML04.png)
+解决方法
+
+- 使用dangerouslySetInnerHTML属性的虚拟dom元素之间可能有内容，应该没有任何内容
+
+![dangerouslySetInnerHTML03](./images/dangerouslySetInnerHTML03.png)
+
+- 改正
+
+![dangerouslySetInnerHTML04](./images/dangerouslySetInnerHTML04.png)
 
 ## 遇到之前不会的知识点
 
