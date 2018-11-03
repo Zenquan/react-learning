@@ -109,7 +109,8 @@ TodoItem.defaultProps = {
 - props引发子组件的render函数；
 - state引发父组件的render函数；
 
-7.虚拟DOM
+7.DOM操作的三个方案
+
 第一种方案：
 - 1.state数据
 - 2.jsx模板
