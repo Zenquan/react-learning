@@ -136,6 +136,7 @@ TodoItem.defaultProps = {
 缺陷： 性能的提升并不明显
 
 第三种方案：
+
 - 1.state数据
 - 2.jsx模板
 - 3.数据+模板结合，生成虚拟DOM（虚拟DOM是一个js对象，用了描述真实DOM）损耗了性能['div', {id: 'abc'}, ['span', {}, 'hello world']
@@ -146,10 +147,12 @@ TodoItem.defaultProps = {
 - 8.直接操作DOM，改变span的内容。
 
 优点：
+
 - 1.性能提升了
 - 2.它使得跨端应用得以实现。React Native
 
 diff算法
+
 - 1.setState使用异步函数是为了把多次setSate合并成一次，节约性能。
 ![](./images/diff.png)
 - 2.diff算法实际上是同层比对虚拟DOM的算法,只要对比一层不同，就删除下面的，用新的虚拟DOM替换，这样可以节约比对时间，节约性能。
@@ -178,3 +181,21 @@ handleClick() {
     })
 }
 ```
+
+10.生命周期函数指在某一时刻组件会自动调用执行的s函数
+
+- componentWillMount：组件即将被挂载到页面时被执行(在挂载时执行一次)
+- render：props和state改变时被执行
+- componentDidMount：组件载到页面之后，被执行(在挂载时执行一次)
+- shouldComponentUpdate：组件被更新之前，他会自动被执行,要求返回一个布尔类型
+- componentWillUpdate: 组件被更新之前，它会自动执行，但是他在shouldComponentUpdate之后执行，如果shouldComponentUpdate返回true它才执行，如果返回false，这个函数不会被执行
+- componentDidUpdate: 更新后被执行，在render之后
+- componentWillReceiveProps： 一个组件从父组件接受参数，只要父组件的render函数重新被执行了，子组件的这个生命周期函数就会被执行
+
+11.react性能优化
+
+- 1.在constructor用bind绑定this。
+- 2.setState设计成异步的，虚拟DOM： diff同层比对算法（如果有一层不同就舍弃以下的层），列表key值。
+- 3.子组件里shouldComponentUpdate返回false。
+
+12.在react里使用ajax，用axios在componentDidMount里使用
