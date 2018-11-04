@@ -7,7 +7,7 @@ class TodoItem extends Component {
     this.delete = this.delete.bind(this);
   }
   render(){
-    console.log('render');
+    console.log('childrender');
     const { content, test } = this.props;
     return (
       <div>
@@ -18,6 +18,18 @@ class TodoItem extends Component {
       </div>
     )
   }
+  shouldComponentUpdate = (nextProps, nextState) => {
+    if(nextProps.content!==this.props.content){
+      return true;
+    }else {
+      return false;
+    }
+  }
+  
+  componentWillReceiveProps() {
+    console.log('child componentWillReceiveProps');
+  }
+  
   delete() {
     const { deleteItem, index } = this.props;
     deleteItem(index);

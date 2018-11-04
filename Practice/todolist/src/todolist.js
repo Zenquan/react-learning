@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import './style.css';
 import TodoItem from './TodoItem';
-import Test from './Test';
+// import Test from './Test';
+import axios from 'axios';
 
 class Todolist extends Component {
   constructor(props) {
@@ -12,10 +13,14 @@ class Todolist extends Component {
     this.deleteClick = this.deleteClick.bind(this);
     this.state = {
         inputValue: '',
-        list: ['学习react']
+        list: []
     }
   }
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
   render() {
+    console.log('render');
     return (
         <Fragment>
             {/* 注释 */}
@@ -30,9 +35,28 @@ class Todolist extends Component {
             <ul ref={ul=>this.ul=ul}>
                 { this.getTodoItem() }
             </ul>
-            <Test testContent={this.state.inputValue}/>
+            {/* <Test testContent={this.state.inputValue}/> */}
         </Fragment>
     )
+  }
+  componentDidMount() {
+    // console.log('componentDidMount');
+    axios.get('/api/todolist')
+      .then(()=>alert('succ'))
+      .catch(()=>alert('error'))
+  }
+  shouldComponentUpdate() {
+    console.log('shouldComponentUpdate');
+    return true;
+  }
+  componentWillReceiveProps() {
+    console.log('componentWillReceiveProps');
+  }
+  componentWillUpdate() {
+    console.log('componentWillUpdate');
+  }
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
   }
   getTodoItem() {
     return this.state.list.map((item, index)=>{
