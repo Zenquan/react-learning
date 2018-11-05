@@ -2,7 +2,11 @@ import React, { Component, Fragment } from 'react';
 import './style.css';
 import TodoItem from './TodoItem';
 // import Test from './Test';
-import axios from 'axios';
+// import axios from 'axios';
+import { Input, Button } from 'antd';
+import 'antd/dist/antd.css';
+import './todolist.css';
+
 
 class Todolist extends Component {
   constructor(props) {
@@ -25,13 +29,19 @@ class Todolist extends Component {
         <Fragment>
             {/* 注释 */}
             <label htmlFor="insertArea">输入内容</label>
-            <input id = "insertArea" 
+            <Input placeholder='todo info' 
+              className='all-width input'
+              value={this.state.inputValue} 
+              onChange={this.handleChange}/>
+            <Button type="primary" 
+              onClick={this.handleClick}>添加</Button> 
+            {/* <input id = "insertArea" 
               className = "input"
               value={this.state.inputValue} 
               onChange={this.handleChange}
               // ref={(input)=>{this.input=input}}
-            />
-            <button onClick={this.handleClick}>添加</button>
+            /> */}
+            {/* <button onClick={this.handleClick}>添加</button> */}
             <ul ref={ul=>this.ul=ul}>
                 { this.getTodoItem() }
             </ul>
@@ -41,9 +51,14 @@ class Todolist extends Component {
   }
   componentDidMount() {
     // console.log('componentDidMount');
-    axios.get('/api/todolist')
-      .then(()=>alert('succ'))
-      .catch(()=>alert('error'))
+    // axios.get('/api/todolist')
+    //   .then((res)=>{
+    //     this.setState(()=>({
+    //       // 建议使用
+    //       list: [...res.data]
+    //     }))
+    //   })
+    //   .catch(()=>alert('error'))
   }
   shouldComponentUpdate() {
     console.log('shouldComponentUpdate');
