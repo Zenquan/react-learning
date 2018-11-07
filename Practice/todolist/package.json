@@ -11,7 +11,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -26,6 +26,24 @@
   "devDependencies": {
     "antd": "^3.10.4",
     "axios": "^0.18.0",
+    "babel-jest": "^23.6.0",
+    "enzyme": "^3.7.0",
+    "jest": "^23.6.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.6.1",
     "redux": "^4.0.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      ".*\\.(css|less|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
   }
 }

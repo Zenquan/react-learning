@@ -1,8 +1,7 @@
-import React, { Component, Fragment } from 'react';
-import { Input, Button, List } from 'antd';
-import 'antd/dist/antd.css';
-import './todolist.css';
+import React, { Component } from 'react';
 import store from './store';
+import { getChangeInputValue, addTodoItem, deleteTodoItem } from './store/actionCreator';
+import TodolistUI from './TodolistUI';
 
 class Todolist2 extends Component {
     constructor(props) {
@@ -11,35 +10,33 @@ class Todolist2 extends Component {
         // console.log(store.getState());
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
+        this.handleClickChange = this.handleClickChange.bind(this);
+        this.deleteclick = this.deleteclick.bind(this);
         store.subscribe(this.handleStoreChange)
     }
     render() {
-        return (
-            <Fragment>
-                <Input value={this.state.inputValue}
-                onChange={this.handleInputChange}
-                placeholder='todo info' className='all-width'/>
-                <Button type='primary'>提交</Button>
-                <List
-                className='all-width'
-                // header={<div>Header</div>}
-                // footer={<div>Footer</div>}
-                bordered
-                dataSource={this.state.list}
-                renderItem={item => (<List.Item>{item}</List.Item>)}
-                />
-            </Fragment>
-        )
+        return <TodolistUI 
+            inputValue = {this.state.inputValue}
+            handleInputChange = {this.handleInputChange}
+            handleClickChange = {this.handleClickChange}
+            list = {this.state.list}
+            deleteclick = {this.deleteclick}
+        />
     }
     handleInputChange(e) {
-        const actions = {
-            type: 'change_input_value',
-            value: e.target.value
-        }
-        store.dispatch(actions);
+        const action = getChangeInputValue(e.target.value);
+        store.dispatch(action);
+    }
+    handleClickChange() {
+        const action = addTodoItem();
+        store.dispatch(action);
     }
     handleStoreChange() {
         this.setState(store.getState())
+    }
+    deleteclick(index) {
+        const action = deleteTodoItem(index);
+        store.dispatch(action);
     }
 }
 

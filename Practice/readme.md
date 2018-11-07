@@ -1,6 +1,7 @@
 # Practice
 
 ## 实战总结
+
 [react实战基础](./react.md)
 
 ## 遇到的一些坑
@@ -93,17 +94,20 @@ TodoItem.propTypes = {
   index: PropTypes.number
 }
 ```
+
 假如把`content: PropTypes.string`改成`content: PropTypes.number`,则会警告，因为content是字符串类型，不是数字类型。
 
 [](./images/propTypes.png)
 
 5.defaultProps：用于设置isRequired的默认值
+
 ```jsx
 // 用于设置isRequired的默认值
 TodoItem.defaultProps = {
   test: 'Hello World'
 }
 ```
+
 6.props, state的每次改变都会引发render函数。
 
 - props引发子组件的render函数；
@@ -112,6 +116,7 @@ TodoItem.defaultProps = {
 7.DOM操作的三个方案
 
 第一种方案：
+
 - 1.state数据
 - 2.jsx模板
 - 3.数据+模板结合，生成真实的DOM，来显示
@@ -119,11 +124,13 @@ TodoItem.defaultProps = {
 - 5.数据+模板结合，生成真实的DOM，替换原始的DOM
 
 缺陷： 
+
 - 第一次生成一个完整的DOM片段
 - 第二次生成一个完整的DOM片段
 - 第二次的DOM替换第一次的DOM，非常耗性能
 
 第二种方案：
+
 - 1.state数据
 - 2.jsx模板
 - 3.数据+模板结合，生成真实的DOM，来显示
@@ -154,9 +161,13 @@ TodoItem.defaultProps = {
 diff算法
 
 - 1.setState使用异步函数是为了把多次setSate合并成一次，节约性能。
-![](./images/diff.png)
+
+![diff](./images/diff.png)
+
 - 2.diff算法实际上是同层比对虚拟DOM的算法,只要对比一层不同，就删除下面的，用新的虚拟DOM替换，这样可以节约比对时间，节约性能。
-![](./images/diff.jpg)
+
+![diff](./images/diff.jpg)
+
 - 3.循环列表中，li里要带key值否则会警告，这个问题在vue中也存在, 考虑到虚拟DOM中diff，所以不要用index作为key值，而要用item。
 
 8.JSX原理
@@ -169,8 +180,10 @@ JSX->createElement->虚拟DOM（js对象）->真是的DOM
 <input id = "insertArea" ref={(input)=>{this.input=input}}/>
 this.input.value==e.target.value;
 ```
+
 注意在setState中使用时，因为setSate是异步的，直接写`console.log(this.ul.querySelectorAll('div').length);`
 就会使得在setSta之前执行，所以要这样使用
+
 ```jsx
 handleClick() {
     this.setState((prevState)=>({
@@ -197,5 +210,110 @@ handleClick() {
 - 1.在constructor用bind绑定this。
 - 2.setState设计成异步的，虚拟DOM： diff同层比对算法（如果有一层不同就舍弃以下的层），列表key值。
 - 3.子组件里shouldComponentUpdate返回false。
+- 4.如果UI组件无逻辑处理，就可以用无状态组件
 
 12.在react里使用ajax，用axios在componentDidMount里使用
+
+13.利用Charles工具mock数据
+
+- 1.创建todolist.json
+- 2.使用Charles网络代理工具
+
+![charles](./images/charles.jpg)
+![charles](./images/charles02.jpg)
+![charles](./images/charles03.jpg)
+
+- 3.mock
+
+```jsx
+axios.get('/api/todolist')
+  .then((res)=>{
+    this.setState(()=>({
+      list: [...res.data]
+    }))
+  })
+  .catch(()=>alert('error'))
+```
+
+14.css过渡动画和动画
+
+- transition：过渡动画
+- animation：动画
+
+```css
+.show {
+    /* opacity: 1;
+    transition: all 1s ease-in; */
+    animation: show-item 2s ease-in forwards;
+}
+.hide {
+    /* opacity: 0; */
+    /* transition: all 1s ease-in; */
+    animation: hide-item 2s ease-in forwards;
+}
+@keyframes show-item {
+    0% {
+        opacity: 0;
+        color: deeppink;
+    }
+
+    50% {
+        opacity: 0.5;
+        color: pink;
+    }
+
+    100% {
+        opacity: 1;
+        color: purple;
+    }
+}
+
+@keyframes hide-item {
+    0% {
+        opacity: 1;
+        color: deeppink;
+    }
+    50% {
+        opacity: 0.5;
+        color: pink;
+    }
+    100% {
+        opacity: 0;
+        color: purple;
+    }
+}
+```
+
+- react-transition-group
+
+15.redux
+由于一些中大型项目中，组件之间的传值比较复杂，所以就要引入redux来管理数据状态。
+
+![redux](./images/redux02.png)
+
+redux原理
+
+![redux](./images/redux01.png)
+
+实现redux: 在store文件夹里实现store，然后在组件中使用，通过store.subscribe(this.handleStoreChange)订阅，通过store.dispatch(action)修改store
+
+基础API
+
+- createStore
+- dispatch
+- getState
+- subscribe
+
+三大原则：
+
+- 单一数据源：整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。
+- State 是只读的唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象， state只由store改变。
+- 使用纯函数来执行修改为了描述 action 如何改变 state tree ，你需要编写 reducers。纯函数指的是给固定的输入久一点有固定的输出，而且不会有任何副作用，修改state的数据。
+
+16.UI组件、容器组件、无状态组件
+
+- UI组件：又称‘傻瓜组件’，一般只负责UI渲染，不负责逻辑处理
+- 容器组件： 又称‘聪明组件’，负责逻辑处理
+- 无状态组件： 组件只有render函数就可以用无状态组件，如果UI组件无逻辑处理，就可以用无状态组件
+
+*无状态组件好处：提高性能，它只是一个函数，而写成类，有周期函数，渲染比较慢*
