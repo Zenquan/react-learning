@@ -1,24 +1,24 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Input, Button, List } from 'antd';
 import 'antd/dist/antd.css';
 import './todolist.css'
 
-const TodolistUI = ()=>{
+const TodolistUI = (props)=>{
     return (
             <Fragment>
-                <Input value={this.props.inputValue}
-                onChange={this.props.handleInputChange}
+                <Input value={props.inputValue}
+                onChange={props.handleInputChange}
                 placeholder='todo info' className='all-width'/>
                 <Button type='primary'
-                onClick={this.props.handleClickChange}
+                onClick={props.handleClickChange}
                 >提交</Button>
                 <List
                 className='all-width'
                 // header={<div>Header</div>}
                 // footer={<div>Footer</div>}
                 bordered
-                dataSource={this.props.list}
-                renderItem={(item)=> (<List.Item onClick={index=>this.props.deleteclick(index)}>{item}</List.Item>)}
+                dataSource={props.list}
+                renderItem={(item)=> (<List.Item onClick={index=>props.deleteclick(index)}>{item}</List.Item>)}
                 />
             </Fragment>
         )
