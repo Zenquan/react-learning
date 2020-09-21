@@ -9,7 +9,7 @@ function formateName(user) {
 }
 function getGreeting(user) {
     if(user) {
-        return <span>{formateName(user)}!</span>;
+        return (<span>{formateName(user)}!</span>);
     }
     return <h1>Hello, Stranger.</h1>
 }
